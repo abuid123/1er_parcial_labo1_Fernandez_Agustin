@@ -76,7 +76,7 @@ void imprimirCliente(eCliente list)
 int altaCliente(eCliente array[], int tam, int* idCliente) {
 	int retorno = 0;
 
-	if (tam > 0 && array != NULL) {
+	if (tam > 0 && array != NULL && idCliente != NULL) {
 		int indice;
 
 		system("cls");
@@ -157,14 +157,14 @@ int modificarCliente(eCliente array[], int tam)
 
 			if(opcion == 1)
 			{
-				utn_getName("Ingrese el nombre: \n", "ERROR: NOMBRE INCORRECTO\n",0, 30, 2, nombre);
+				utn_getName("Ingrese el nombre: \n", "ERROR: NOMBRE INCORRECTO\n",0, 51, 2, nombre);
 				strcpy(array[indice].nombre, nombre);
 				printf("\nSe actualizo el nombre del cliente.\n");
 				retorno = 1;
 			}
 			else if(opcion == 2)
 			{
-				utn_getName("Ingrese el apellido: \n", "ERROR: APELLIDO INCORRECTO\n",0, 30, 2, apellido);
+				utn_getName("Ingrese el apellido: \n", "ERROR: APELLIDO INCORRECTO\n",0, 51, 2, apellido);
 				strcpy(array[indice].apellido, apellido);
 				printf("\nSe actualizo el apellido del cliente.\n");
 				retorno = 1;

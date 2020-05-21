@@ -134,7 +134,8 @@ int main(void) {
 					utn_getNumero(&opcion2,"Que desea hacer?\n"
 							"1) Cliente con más préstamos activos.\n"
 							"2) Cliente con más préstamos saldados. \n"
-							"3) Salir.\n","ERROR:OPCION INVALIDA",1,3,2);
+							"3) Cliente con mas prestamos.\n"
+							"4) Salir.\n","ERROR:OPCION INVALIDA",1,4,2);
 
 					switch(opcion2)
 					{
@@ -145,6 +146,9 @@ int main(void) {
 						clienteMasPrestamosSaldados(cliente, QTY_CLIENTES, prestamo, QTY_PRESTAMOS);
 						break;
 					case 3:
+						clienteMasPrestamos(cliente, QTY_CLIENTES, prestamo, QTY_PRESTAMOS);
+						break;
+					case 4:
 						break;
 					}
 				}
@@ -165,17 +169,31 @@ int main(void) {
 					printf("Informes prestamos\n");
 					utn_getNumero(&opcion3,"Que desea hacer?\n"
 							"1) Cantidad de préstamos de importe mayor a 1000.\n"
-							"2) Salir.\n","ERROR:OPCION INVALIDA",1,2,2);
+							"2) Prestamos de 12 cuotas saldados.\n"
+							"3) Prestamos por cuotas.\n"
+							"4) Salir.\n","ERROR:OPCION INVALIDA",1,4,2);
 
 					switch(opcion3)
 					{
 					case 1:
-						if(informePrestamos(cliente, QTY_CLIENTES, prestamo, QTY_PRESTAMOS)== -1)
+						if(informePrestamos(prestamo, QTY_PRESTAMOS)== -1)
 						{
 							printf("Error, no se reconocio el ingreso.\n");
 						}
 						break;
 					case 2:
+						if(prestamosCuotas(prestamo, QTY_PRESTAMOS)==-1)
+						{
+							printf("No tenemos prestamos saldados con esas cuotas.\n");
+						}
+						break;
+					case 3:
+						if(prestamosActivosCuotas(prestamo, QTY_PRESTAMOS)==-1)
+						{
+							printf("No tenemos prestamos activos con esas cuotas.\n");
+						}
+						break;
+					case 4:
 						break;
 					}
 				}

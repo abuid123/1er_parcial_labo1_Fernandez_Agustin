@@ -93,4 +93,22 @@ int buscarPrestamo(ePrestamo array[], int tam, int id, int opcion) {
 }
 
 
+int devuelveCantidadPrestamosGeneral(ePrestamo list[],int len, int id, int* cantidad)
+{
+	int ret = 0;
+	int acumulador = 0;
+	if(list != NULL && len > 0 && cantidad != NULL)
+	{
+		for(int i = 0; i < len; i++)
+		{
+			if(list[i].isEmpty == 0 && list[i].isEmpty == -1 &&list[i].idCliente == id)
+			{
+				acumulador++;
+			}
+		}
+		*cantidad = acumulador;
+		ret = 1;
+	}
+	return ret;
+}
 

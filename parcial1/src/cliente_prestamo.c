@@ -319,12 +319,12 @@ int clienteMasPrestamosSaldados(eCliente aCliente[], int tamC, ePrestamo aPresta
 }
 
 
-int informePrestamos(eCliente aCliente[], int tamC, ePrestamo aPrestamo[], int tamP)
+int informePrestamos(ePrestamo aPrestamo[], int tamP)
 {
 	int ret = -1;
 	int auxImporte;
 	int contador = 0;
-	if(aCliente != NULL && tamC > 0 && aPrestamo != NULL && tamP > 0)
+	if(aPrestamo != NULL && tamP > 0)
 	{
 		if(utn_getNumero(&auxImporte,"Ingrese un importe mayor a 1000: \n","Error ese importe es muy bajo.\n",1000,400000,2)== 0)
 		{
@@ -336,6 +336,84 @@ int informePrestamos(eCliente aCliente[], int tamC, ePrestamo aPrestamo[], int t
 				}
 			}
 			printf("Se encontraron %d prestamos con ese importe.\n",contador);
+			ret = 0;
+		}
+	}
+	return ret;
+}
+
+int clienteMasPrestamos(eCliente aCliente[], int tamC, ePrestamo aPrestamo[], int tamP)
+{
+	int ret = -1;
+	int contador;
+	int maximo;
+	int flag = 0;
+	int posicion;
+	if(aCliente != NULL && tamC > 0 && aPrestamo != NULL && tamP > 0)
+	{
+		for(int i = 0; i<tamC; i++)
+		{
+			if(aCliente[i].isEmpty == 0)
+			{
+				devuelveCantidadPrestamosGeneral(aPrestamo,tamP, aCliente[i].idCliente, &contador);
+
+				if(flag == 0 || contador > maximo)
+				{
+					maximo = contador;
+					posicion = i;
+					flag = 1;
+				}
+			}
+		}
+
+		printf("El cliente con mas prestamos es: \n"
+				"Nombre: %s\n"
+				"Apellido: %s\n"
+				"cuil: %s\n"
+				"Cantidad de prestamos: %d\n",aCliente[posicion].nombre,aCliente[posicion].apellido,aCliente[posicion].cuil,maximo);
+
+		ret = 0;
+	}
+	return ret;
+}
+
+int prestamosCuotas(ePrestamo aPrestamo[], int tamP)
+{
+	int ret = -1;
+	int contador = 0;
+	if(aPrestamo != NULL && tamP > 0)
+	{
+		for(int i = 0; i < tamP; i++)
+		{
+			if(aPrestamo[i].isEmpty == -1 && aPrestamo[i].cantidadCuotas == 12)
+			{
+				contador++;
+			}
+		}
+
+		printf("La cantidad de prestamos saldados de 12 cuotas es de: %d\n", contador);
+		ret = 0;
+	}
+	return ret;
+}
+
+int prestamosActivosCuotas(ePrestamo aPrestamo[], int tamP)
+{
+	int ret = -1;
+	int contador = 0;
+	int auxNumero;
+	if(aPrestamo != NULL && tamP > 0)
+	{
+		if(utn_getNumero(&auxNumero,"Ingrese la cantidad de cuotas: (1 a 12)\n","Error cuotas incorrectas.\n",1,12,3) == 0)
+		{
+			for(int i = 0; i < tamP; i++)
+			{
+				if(aPrestamo[i].isEmpty == 0 && aPrestamo[i].cantidadCuotas == auxNumero)
+				{
+					contador++;
+				}
+			}
+			printf("La cantidad de prestamos activos de %d cuotas es de: %d\n",auxNumero ,contador);
 			ret = 0;
 		}
 	}

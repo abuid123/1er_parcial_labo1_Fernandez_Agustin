@@ -7,6 +7,11 @@
 
 #ifndef CLIENTE_PRESTAMO_H_
 #define CLIENTE_PRESTAMO_H_
+
+int clienteMasPrestamos(eCliente aCliente[], int tamC, ePrestamo aPrestamo[], int tamP);
+int prestamosCuotas(ePrestamo aPrestamo[], int tamP);
+int prestamosActivosCuotas(ePrestamo aPrestamo[], int tamP);
+
 /**
  * \brief Da de baja un cliente poniendo su isEmpty en 1
  * \param eCliente aCliente puntero al array de clientes
@@ -72,7 +77,7 @@ int imprimirClientesPrestamoActivo(eCliente aCliente[], int tamC, ePrestamo aPre
  * \param int tamP tamaño del array prestamo
  * \return int ret [-1] error [0] all ok
  */
-int informePrestamos(eCliente aCliente[], int tamC, ePrestamo aPrestamo[], int tamP);
+int informePrestamos(ePrestamo aPrestamo[], int tamP);
 
 
 /**

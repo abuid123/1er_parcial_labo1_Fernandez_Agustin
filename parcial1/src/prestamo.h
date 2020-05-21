@@ -17,6 +17,7 @@ typedef struct
 	int isEmpty;
 }ePrestamo;
 
+int devuelveCantidadPrestamosGeneral(ePrestamo list[],int len, int id, int* cantidad);
 
 /**
  * \brief inicializa el array de prestamos isEmpty en 1
